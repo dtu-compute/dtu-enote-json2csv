@@ -1,7 +1,7 @@
 library(jsonlite)
 library(lubridate)
 
-json_file <- "~/Downloads/18.json"
+json_file <- "/in.json"
 
 #js <- stream_in(con=file(json_file))
 #js <- fromJSON(sprintf("[%s]", paste(readLines(json_file), collapse=",")))
@@ -26,10 +26,11 @@ questions$TotalCorrect = rowSums(questions)
 questions$PctCorrect = 100.0(questions$TotalCorrect / (ncol(questions)-1))
 answers <- cbind(answers, questions)
 
-write.table(answers, file="~/Downloads/test_quiz.csv", sep=",", row.names = FALSE)
+write.table(answers, file="/output/out.csv", sep=",", row.names = FALSE)
 
 print(answers)
 
 ## Question stats
 
 print(qstats)
+

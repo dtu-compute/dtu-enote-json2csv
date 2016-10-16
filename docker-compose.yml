@@ -1,0 +1,4 @@
+json2csv:
+  build: .
+  container_name: json2csv
+
