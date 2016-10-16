@@ -1,5 +1,8 @@
 library(jsonlite)
 library(lubridate)
+chooseCRANmirror(ind=81)
+install.packages("jsonlite")
+install.packages("lubridate")
 
 json_file <- "/in.json"
 
@@ -23,7 +26,7 @@ questions <- as.data.frame(questions)
 names(questions) <- paste0("Q", 1:ncol(questions))
 qstats = apply(questions[,], 2, function(x) length(which(x))) / nrow(questions[,])
 questions$TotalCorrect = rowSums(questions)
-questions$PctCorrect = 100.0(questions$TotalCorrect / (ncol(questions)-1))
+questions$PctCorrect = 100.0*(questions$TotalCorrect / (ncol(questions)-1))
 answers <- cbind(answers, questions)
 
 write.table(answers, file="/output/out.csv", sep=",", row.names = FALSE)
