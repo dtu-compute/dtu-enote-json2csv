@@ -3,6 +3,12 @@ library(lubridate)
 
 json_file <- "~/Downloads/18.json"
 
+if (length(args)!=1) {
+  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+} else if (length(args)==1) {
+  json_file <- args[0]
+}
+
 #js <- stream_in(con=file(json_file))
 #js <- fromJSON(sprintf("[%s]", paste(readLines(json_file), collapse=",")))
 js <- fromJSON(sprintf("%s", paste(readLines(json_file))))
