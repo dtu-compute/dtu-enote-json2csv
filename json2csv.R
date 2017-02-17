@@ -2,14 +2,21 @@ library(jsonlite)
 library(lubridate)
 
 json_file <- "~/Downloads/18.json"
+out_file <- "~/Downloads/test_quiz.csv"
 
 args = commandArgs(trailingOnly=TRUE)
 
-if (length(args)!=1) {
-  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+if (length(args)==1) {
+  stop("At least one argument must be supplied (input file).\n")
 } else if (length(args)==1) {
-  json_file <- args[0]
+  json_file <- args[1]
+} else if (length(args)>1) {
+  json_file <- args[1]
+  out_file <- args[2]
 }
+
+print(c("Loading file from", json_file))
+print(c("Writing file to", out_file))
 
 #js <- stream_in(con=file(json_file))
 #js <- fromJSON(sprintf("[%s]", paste(readLines(json_file), collapse=",")))
@@ -34,7 +41,7 @@ questions$TotalCorrect = rowSums(questions)
 questions$PctCorrect = 100.0(questions$TotalCorrect / (ncol(questions)-1))
 answers <- cbind(answers, questions)
 
-write.table(answers, file="~/Downloads/test_quiz.csv", sep=",", row.names = FALSE)
+write.table(answers, file=out_file, sep=",", row.names = FALSE)
 
 print(answers)
 
